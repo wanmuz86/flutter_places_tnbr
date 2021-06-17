@@ -28,11 +28,17 @@ class LoginPage extends StatelessWidget {
               TextButton(
                 style: TextButton.styleFrom(
                     backgroundColor: Colors.red, primary: Colors.white),
-                onPressed: () {},
+                onPressed: () {
+                  // TODO Navigate to page places
+
+                },
                 child: Text("Login"),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  // TODO Navigate to page register
+
+                },
                 child: Text("No Account? Register now!"),
               )
             ],

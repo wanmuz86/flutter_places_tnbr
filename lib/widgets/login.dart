@@ -7,32 +7,37 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Login"),
       ),
-      body: Column(
-        children: [
-          Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1200px-Yelp_Logo.svg.png"),
-          TextField(
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              hintText: "Email",
-            ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.network("https://www.cyclonis.com/images/2020/04/Yelp_Logo.jpg"),
+              TextField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: "Email",
+                ),
+              ),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "Password",
+                ),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                    backgroundColor: Colors.red, primary: Colors.white),
+                onPressed: () {},
+                child: Text("Login"),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text("No Account? Register now!"),
+              )
+            ],
           ),
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              hintText: "Password",
-            ),
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-                backgroundColor: Colors.red, primary: Colors.white),
-            onPressed: () {},
-            child: Text("Login"),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text("No Account? Register now!"),
-          )
-        ],
+        ),
       ),
     );
   }

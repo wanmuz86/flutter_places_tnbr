@@ -9,6 +9,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1200px-Yelp_Logo.svg.png"),
           TextField(
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(

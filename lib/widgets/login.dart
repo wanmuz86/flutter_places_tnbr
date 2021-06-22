@@ -57,23 +57,17 @@ class LoginPage extends StatelessWidget {
                            MaterialPageRoute(builder: (context)=>PlacePage())
                        );
                      })
-                  
-
-
                 }
                     else {
                       Fluttertoast.showToast(
-                        msg: "Login failed",
+                        msg: loginResponse.message!,
                         toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
+                        gravity: ToastGravity.BOTTOM,
                       )
                     }
 
                   });
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(builder: (context)=>PlacePage())
-                  // );
+
 
                 },
                 child: Text("Login"),

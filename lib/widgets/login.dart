@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:places/widgets/place.dart';
+import 'package:places/widgets/register.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -30,6 +32,10 @@ class LoginPage extends StatelessWidget {
                     backgroundColor: Colors.red, primary: Colors.white),
                 onPressed: () {
                   // TODO Navigate to page places
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context)=>PlacePage())
+                  );
 
                 },
                 child: Text("Login"),
@@ -37,6 +43,10 @@ class LoginPage extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   // TODO Navigate to page register
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context)=>RegisterPage())
+                  );
 
                 },
                 child: Text("No Account? Register now!"),

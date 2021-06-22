@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:places/models/login.dart';
 import 'package:places/widgets/place.dart';
 import 'package:places/widgets/register.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -56,5 +59,26 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<Login> loginUser(String username,String password) async {
+    final response = await http.post(
+      Uri.parse('https://gentle-escarpment-90591.herokuapp.com/api/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'username': username,
+        'password':password
+      }),
+    );
+
+    if (response.statusCode == 200) {
+
+      return Login.fromJson(jsonDecode(response.body));
+    } else {
+
+      throw Exception('Failed to login user');
+    }
   }
 }

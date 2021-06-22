@@ -5,7 +5,7 @@ class Login {
 
   Login({required this.success, required this.message, required this.token});
 
-  factory Login.fromJSON(Map<String, dynamic> json){
+  factory Login.fromJson(Map<String, dynamic> json){
     return Login(
       success:json["success"]!,
       message:json["message"],

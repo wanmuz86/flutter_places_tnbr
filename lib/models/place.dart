@@ -15,5 +15,19 @@ class Place {
         avgRating: json["avgRating"]!
     );
   }
+
+  static List<Place> placesFromJson(dynamic json ){
+    var places = json;
+    List<Place> results = new List.empty(growable: true);
+    if (places != null){
+
+      places.forEach((v)=>{
+        results.add(Place.fromJson(v))
+      });
+      return results;
+    }
+    return results;
+  }
+
 }
 

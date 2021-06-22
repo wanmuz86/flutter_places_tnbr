@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:places/models/Register.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -38,5 +40,25 @@ class RegisterPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<Register> registerUser(String username, String password) async {
+    final response = await http.post(
+      Uri.parse('https://gentle-escarpment-90591.herokuapp.com/api/register'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'username': username,
+        'password': password
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      return Register.fromJson(jsonDecode(response.body));
+    } else {
+
+      throw Exception('Failed to register user.');
+    }
   }
 }

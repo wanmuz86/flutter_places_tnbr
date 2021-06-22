@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/widgets/review.dart';
 
 class DetailPage extends StatefulWidget {
   @override
@@ -10,7 +11,22 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
      return Scaffold(
       appBar: AppBar(title: Text("Detail"),),
-      body: Text("detail"),
+      body: Center(
+        child: Column(
+          children: [
+            Text("Place name"),
+            Text("Place description"),
+            Text("Place categories"),
+            Text("Place average rating"),
+            TextButton(onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context)=>ReviewPage())
+              );
+            }, child: Text("Add new Review"))
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/widgets/detail.dart';
 
 
 class PlacePage extends StatefulWidget {
@@ -23,6 +24,12 @@ class _PlacePageState extends State<PlacePage> {
             title: Text(places[index]["name"]!),
             subtitle: Text(places[index]["country"]!),
             trailing: Icon(Icons.chevron_right),
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context)=>DetailPage())
+              );
+            },
           );
         },
         separatorBuilder: (BuildContext context, int index) => const Divider(),

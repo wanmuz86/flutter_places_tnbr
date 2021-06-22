@@ -26,9 +26,9 @@ class _PlacePageState extends State<PlacePage> {
 
     if (token != null){
       retrievePlace(token).then((places) {
-
+        print(places);
       setState(() {
-        places : places;
+        places = places;
       });
       });
     }

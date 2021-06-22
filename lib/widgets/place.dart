@@ -25,12 +25,12 @@ class _PlacePageState extends State<PlacePage> {
     String? token = prefs.getString("token");
 
     if (token != null){
-      retrievePlace(token).then((places) {
-        print(places);
-      setState(() {
-        places = places;
-      });
-      });
+
+      retrievePlace(token).then((value) =>
+          setState(() {
+            places = value;
+          })
+      );
     }
 
   }

@@ -4,8 +4,12 @@ import 'package:places/widgets/place.dart';
 import 'package:places/widgets/register.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginPage extends StatelessWidget {
+
+  var usernameController = TextEditingController();
+  var passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,12 +23,14 @@ class LoginPage extends StatelessWidget {
             children: [
               Image.network("https://www.cyclonis.com/images/2020/04/Yelp_Logo.jpg"),
               TextField(
+                controller: usernameController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: "Email",
                 ),
               ),
               TextField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: "Password",
@@ -34,11 +40,29 @@ class LoginPage extends StatelessWidget {
                 style: TextButton.styleFrom(
                     backgroundColor: Colors.red, primary: Colors.white),
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   // TODO Navigate to page places
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context)=>PlacePage())
-                  );
+                  loginUser(usernameController.text, passwordController.text).then((loginResponse) => {
+                    if (loginResponse.success == true){
+                      Fluttertoast.showToast(
+                        msg: "Login successful",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                      )
+                    }
+                    else {
+                      Fluttertoast.showToast(
+                        msg: "Login failed",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                      )
+                    }
+
+                  });
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(builder: (context)=>PlacePage())
+                  // );
 
                 },
                 child: Text("Login"),

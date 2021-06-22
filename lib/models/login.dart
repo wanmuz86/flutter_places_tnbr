@@ -1,5 +1,5 @@
 class Login {
-  final String success;
+  final bool success;
   final String? message;
   final String? token;
 

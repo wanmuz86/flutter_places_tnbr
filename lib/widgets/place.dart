@@ -12,7 +12,7 @@ class PlacePage extends StatefulWidget {
 }
 
 class _PlacePageState extends State<PlacePage> {
-  List<dynamic> places = [];
+  List<Place> places = [];
 
   @override
   void initState() {
@@ -25,10 +25,11 @@ class _PlacePageState extends State<PlacePage> {
     String? token = prefs.getString("token");
 
     if (token != null){
-      retrievePlace(token).then((value) => {
+      retrievePlace(token).then((places) {
+
       setState(() {
-        places : value;
-      })
+        places : places;
+      });
       });
     }
 
@@ -42,8 +43,8 @@ class _PlacePageState extends State<PlacePage> {
         itemCount: places.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            title: Text(places[index]["name"]!),
-            subtitle: Text(places[index]["country"]!),
+            title: Text(places[index].name),
+            subtitle: Text(places[index].country),
             trailing: Icon(Icons.chevron_right),
             onTap: (){
               Navigator.push(

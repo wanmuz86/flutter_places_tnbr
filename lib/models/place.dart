@@ -2,7 +2,7 @@ class Place {
   final String name;
   final String description;
   final String country;
-  final double avgRating;
+  final num avgRating;
 
   Place({required this.name, required this.description, required this.country, required
   this.avgRating});

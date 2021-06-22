@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:places/models/Register.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 class RegisterPage extends StatelessWidget {
+  var usernameController = TextEditingController();
+  var passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,12 +17,14 @@ class RegisterPage extends StatelessWidget {
             children: [
               Image.network("https://www.cyclonis.com/images/2020/04/Yelp_Logo.jpg"),
               TextField(
+                controller: usernameController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: "Email",
                 ),
               ),
               TextField(
+                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: "Password",
@@ -29,9 +34,32 @@ class RegisterPage extends StatelessWidget {
                 style: TextButton.styleFrom(
                     backgroundColor: Colors.red, primary: Colors.white),
                 onPressed: () {
+                  if (usernameController.text != "" && passwordController.text != "") {
+                    FocusScope.of(context).unfocus();
+                    registerUser(
+                        usernameController.text, passwordController.text).then((
+                        register) =>
+                    {
+                      if (register.message == "User succesfully registered!"){
+                        // TODO show toast
+                        Fluttertoast.showToast(
+                        msg: "User succesfully register. You may login",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                    )
 
+                      }
+                    });
+                  }
+                  else {
+                    // TODO show a toast password or username cannot be empty
+                    Fluttertoast.showToast(
+                      msg: "Username and password cannot be empty",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                    );
 
-
+                  }
                 },
                 child: Text("Register"),
               )

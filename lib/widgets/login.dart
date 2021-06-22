@@ -5,6 +5,7 @@ import 'package:places/widgets/register.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatelessWidget {
 
@@ -39,17 +40,27 @@ class LoginPage extends StatelessWidget {
               TextButton(
                 style: TextButton.styleFrom(
                     backgroundColor: Colors.red, primary: Colors.white),
-                onPressed: () {
+                onPressed: ()  {
+                  
                   FocusScope.of(context).unfocus();
                   // TODO Navigate to page places
-                  loginUser(usernameController.text, passwordController.text).then((loginResponse) => {
+                  loginUser(usernameController.text, passwordController.text).then(
+                          (loginResponse)  =>
+                  {
                     if (loginResponse.success == true){
-                      Fluttertoast.showToast(
-                        msg: "Login successful",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                      )
-                    }
+
+                     SharedPreferences.getInstance().then((prefs){
+
+                      prefs.setString("token", loginResponse.token!.split(" ").last);
+                       Navigator.push(
+                           context,
+                           MaterialPageRoute(builder: (context)=>PlacePage())
+                       );
+                     })
+                  
+
+
+                }
                     else {
                       Fluttertoast.showToast(
                         msg: "Login failed",
